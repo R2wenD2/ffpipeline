@@ -67,7 +67,7 @@ spec:
             image: cfmanteiga/alpine-bash-curl-jq
             script: | 
               #!/usr/bin/env bash
-              count = `jq --slurp < $(workspaces.where-it-all-happens.path)/test-results-$(params.pipelinerun-name)" '.[] | select(.Action != "output") | select(.Action != "run") | select(.Test != null) | {(.Test): .Action}' | jq -s . | jq 'unique'`
+              count=`jq --slurp < $(workspaces.where-it-all-happens.path)/test-results-$(params.pipelinerun-name) '.[] | select(.Action != "output") | select(.Action != "run") | select(.Test != null) | {(.Test): .Action}' | jq -s . | jq 'unique'`
               if [ count != 2 ]
               then
                 echo "At least one test is flakey"
